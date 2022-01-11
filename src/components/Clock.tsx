@@ -1,17 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 
-export class Clock extends React.Component {
+interface Props {
 
-    constructor(props) {
+}
+
+interface State {
+    time: string;
+}
+
+export class Clock extends React.Component <Props, State> {
+    intervalID?: number;
+
+    constructor(props: Props) {
         super(props);
         this.state = {
             time: new Date().toLocaleString(),
         };
     }
     componentDidMount() {
-        this.intervalId = setInterval(() => this.tick(), 1000)
+        this.intervalID = setInterval(() => this.tick(), 1000)
     }
+
     tick() {
         this.setState({
             time: new Date().toLocaleString()
